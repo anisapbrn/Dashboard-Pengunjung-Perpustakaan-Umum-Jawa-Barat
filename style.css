@@ -12,6 +12,7 @@
   
 /* TOP BAR */
 .navbar {
+    margin-top: 0px;
     width: 100%;
     padding: 15px 20px;
     background: linear-gradient(90deg, #5B8CFF, #FF7B9C);
@@ -60,6 +61,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  /* Wrapper  untuk scroll Bar/Line Chart */
+  .scrollable-chart-container {
+    width: 100%;
+    overflow-x: auto;
+    height: 500px;
   }
   
   /* PIE CHART + LEGEND */
@@ -138,8 +146,19 @@
     transition: 0.3s;
     font-size: 14px;
   }
-  select:hover, .dropdown-btn:hover {
-    border-color: #295EFF;
+
+  /* EFEK HOVER */
+  select:hover, 
+  .dropdown-btn:hover {
+    border-color: #FF7B9C;
+  }
+
+  /* EFEK FOCUS */
+  select:focus,
+  .dropdown-btn:focus {
+    border-color: #FF7B9C;
+    box-shadow: 0 0 0 3px rgba(255, 123, 156, 0.25); 
+    outline: none; 
   }
   
   /* DROPDOWN */
@@ -166,7 +185,7 @@
   .show { display: block; }
   
   /* FOOTER CREDIT */
-.footer {
+  .footer {
     margin-top: 40px;
     width: 100%;
     text-align: center;
@@ -179,9 +198,46 @@
   }
   .footer span {
     font-weight: 600;
-    color: #E5F0FF; /* lebih lembut dari C9E1FF */
+    color: #E5F0FF; 
   }
   
+  /* Kotak Penjelasan (Statis) */
+  .chart-description {
+    margin-top: 25px;    
+    padding: 16px;
+    background: #f8faff;  
+    border-radius: 10px;
+    border: 1px dashed #c0d4ff; 
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444a6c;
+  }
+
+  /* Kotak Insight (Dinamis) */
+  .chart-insight {
+    margin-top: 15px;
+    padding: 16px;
+    background: #f8faff;
+    border-radius: 10px;
+    border: 1px dashed #c0d4ff;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444a6c;
+  }
+
+  /* <strong> di insight */
+  .chart-insight strong {
+    color: #295EFF;
+    font-weight: 600;
+  }
+
+  .chart-section hr.separator {
+    border: none; 
+    height: 1px;  
+    background-color: #e0e6f3;
+    margin: 25px 0; 
+  }
+
   /* RESPONSIVE */
   @media(max-width: 900px) {
     .container {
@@ -203,6 +259,18 @@
       width: 300px !important;
       height: 300px !important;
     }
+    
+    /* Biar grafik ga gepeng */
+    /* 1. Beri container scroll-nya tinggi yang tetap */
+    .scrollable-chart-container {
+      height: 550px;
+      width: 100%;
+    }
+    /* 2. Paksa canvas di dalamnya untuk mengisi container itu */
+    .scrollable-chart-container #barChart,
+    .scrollable-chart-container #lineChart {
+      min-width: 450px; /* Lebar minimum (untuk scroll) */
+    }
   }
   
   @media(max-width: 600px) {
@@ -213,4 +281,3 @@
       font-size: 13px;
     }
   }
-  
