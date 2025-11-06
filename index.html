@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Pengunjung Perpustakaan Jawa Barat</title>
+  <title>Dashboard Pengunjung Perpustakaan Umum di Jawa Barat</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
 <header class="navbar">
-  <h2>📚 Dashboard Pengunjung Perpustakaan Jawa Barat</h2>
+   <h2>📚 Dashboard Pengunjung Perpustakaan Umum di Jawa Barat</h2>
 </header>
 
 <div class="container">
 
   <div class="chart-section">
+    
     <h3 id="chartTitle" class="chart-title"></h3>
 
     <div class="chart-wrapper">
       
-      <!-- PIE: CHART KIRI, LEGEND KANAN -->
       <div class="pie-container" id="pieContainer" style="display:none;">
         <canvas id="pieChart"></canvas>
         <div class="pie-legend-container">
@@ -28,24 +28,30 @@
         </div>
       </div>
 
-      <canvas id="barChart"></canvas>
-      <canvas id="lineChart" style="display:none;"></canvas>
-    </div>
-  </div>
+      <div class="scrollable-chart-container">
+        <canvas id="barChart"></canvas>
+        <canvas id="lineChart" style="display:none;"></canvas>
+      </div>
 
-  <aside class="sidebar">
+    </div> <hr class="separator">
+
+    <p class="chart-description" id="chartDescription"></p>
+    
+    <p class="chart-insight" id="chartInsight"></p>
+
+  </div> <aside class="sidebar">
       <h3>⚙️ Pengaturan</h3>
 
-      <label>Pilih Jenis Grafik</label>
+      <label>📊 Pilih Jenis Grafik</label>
       <select id="chartSelector">
         <option value="bar">Bar Chart</option>
         <option value="pie">Pie Chart</option>
         <option value="line">Line Chart</option>
       </select>
 
-      <br><br>
+      <br>
 
-      <label>Filter Tahun</label>
+      <label>🗓️ Filter Tahun</label>
       <div class="dropdown-select">
           <button class="dropdown-btn" id="btnYears">Pilih Tahun ▾</button>
           <div class="dropdown-content" id="dropdownYears">
@@ -54,24 +60,18 @@
           </div>
       </div>
 
-      <br>
-
-      <label>Filter Kabupaten/Kota</label>
+      <label>🗺️ Filter Kabupaten/Kota</label>
       <div class="dropdown-select">
-          <button class="dropdown-btn" id="btnCities">Pilih Kabupaten ▾</button>
+          <button class="dropdown-btn" id="btnCities">Pilih Kabupaten/Kota ▾</button>
           <div class="dropdown-content" id="dropdownCities">
               <label><input type="checkbox" id="checkAllCities" checked> Pilih Semua Kabupaten</label>
               <hr>
           </div>
       </div>
-
-  </aside>
-</div>
+  </aside> </div> <footer class="footer">
+   © 2025 Visualisasi Data Pengunjung Perpustakaan Umum Jawa Barat | dibuat oleh <span>Anisa Pebriyani Huslan - 220660121016</span>
+</footer> 
 
 <script src="app.js"></script>
 </body>
-<footer class="footer">
-    © 2025 Visualisasi Data Pengunjung Perpustakaan Jawa Barat | dibuat oleh 
-    <span>Anisa Pebriyani Huslan - 220660121016</span>
-  </footer>  
 </html>
