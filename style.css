@@ -62,13 +62,6 @@
     justify-content: center;
     align-items: center;
   }
-
-  /* Wrapper  untuk scroll Bar/Line Chart */
-  .scrollable-chart-container {
-    width: 100%;
-    overflow-x: auto;
-    height: 500px;
-  }
   
   /* PIE CHART + LEGEND */
   .pie-container {
@@ -118,7 +111,7 @@
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-    height: 100vh;
+    max-height: calc(100vh - 30px);
     position: sticky;
     top: 15px;
     transition: 0.25s;
@@ -259,18 +252,6 @@
       width: 300px !important;
       height: 300px !important;
     }
-    
-    /* Biar grafik ga gepeng */
-    /* 1. Beri container scroll-nya tinggi yang tetap */
-    .scrollable-chart-container {
-      height: 550px;
-      width: 100%;
-    }
-    /* 2. Paksa canvas di dalamnya untuk mengisi container itu */
-    .scrollable-chart-container #barChart,
-    .scrollable-chart-container #lineChart {
-      min-width: 450px; /* Lebar minimum (untuk scroll) */
-    }
   }
   
   @media(max-width: 600px) {
@@ -281,3 +262,4 @@
       font-size: 13px;
     }
   }
+
