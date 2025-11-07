@@ -154,7 +154,20 @@ function renderCharts(data, years, cities) {
     type: "bar",
     data: barData,
     options: {
-      maintainAspectRatio: false // ✅ TAMBAHAN INI
+      maintainAspectRatio: false,
+      aspectRatio: window.innerWidth < 768 ? 1.2 : 2,
+      scales: {
+        x: {
+          ticks: {
+            autoSkip: false,
+            maxRotation: 90,
+            minRotation: 0,
+            font: {
+                size: window.innerWidth < 768 ? 7 : 11
+            }
+          }
+        }
+      }
     }
   });
 
@@ -220,7 +233,6 @@ function renderCharts(data, years, cities) {
             }
           }
         }
-        
       }
     }
   });
@@ -234,7 +246,8 @@ function renderCharts(data, years, cities) {
     type: "line",
     data: lineData,
     options: {
-      maintainAspectRatio: false // ✅ TAMBAHAN INI
+      maintainAspectRatio: false,
+      aspectRatio: window.innerWidth < 768 ? 1.2 : 2
     }
   });
 
@@ -602,21 +615,16 @@ function showChart(type) {
 
   // Ambil semua container
   const pieContainer = document.getElementById("pieContainer");
-  // Cari wrapper bar/line baru kita
-  const barLineContainer = document.querySelector(".scrollable-chart-container"); 
-  
-  // Tampilkan/sembunyikan canvas di DALAM wrapper
-  document.getElementById("barChart").style.display = type === "bar" ? "block" : "none";
-  document.getElementById("lineChart").style.display = type === "line" ? "block" : "none";
-  
+  const barCanvas = document.getElementById("barChart");
+  const lineCanvas = document.getElementById("lineChart");
+
   // Tampilkan/sembunyikan wrapper-nya
+  barCanvas.style.display = type === "bar" ? "block" : "none";
+  lineCanvas.style.display = type === "line" ? "block" : "none";
   pieContainer.style.display = type === "pie" ? "flex" : "none";
-  barLineContainer.style.display = (type === "bar" || type === "line") ? "block" : "none";
 
   setChartTitle();
 
-  // (Kita pindahkan ini dari applyFilters ke sini agar
-  // deskripsi & insight juga update saat ganti chart)
   const years = [...document.querySelectorAll(".yearCheck:checked")].map(c => c.value);
   const cities = [...document.querySelectorAll(".cityCheck:checked")].map(c => c.value);
   const filtered = rawData.filter(d =>
@@ -626,3 +634,4 @@ function showChart(type) {
   updateDescription();
   updateInsight(currentChart, years, cities, filtered);
 }
+
